@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@onready var animation_player = $AnimationPlayer
 var speed = 400
 
 func _physics_process(delta):
@@ -16,5 +16,9 @@ func _physics_process(delta):
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-	
+	else:
+		if Input.is_action_just_released("ui_right"):
+			animation_player.play("idle_down_right")
+		if Input.is_action_just_released("ui_left"):
+			animation_player.play("idle_down_left")
 	position += velocity * delta
