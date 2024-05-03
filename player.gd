@@ -6,8 +6,10 @@ var direction
 func _physics_process(delta):
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("ui_right"):
+		animation_player.play("run_up_right")
 		velocity.x += 1
 	if Input.is_action_pressed("ui_left"):
+		animation_player.play("run_up_left")
 		velocity.x -= 1
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
