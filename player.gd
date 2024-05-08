@@ -13,8 +13,9 @@ func _physics_process(delta):
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		direction = velocity
-		
-	handle_animation()
+	
+	if animation_player.current_animation != "attack_up_right":
+		handle_animation()
 	position += velocity * delta
 
 func handle_movement_input():
@@ -26,6 +27,11 @@ func handle_movement_input():
 		velocity.y += 1
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
+
+func _unhandled_input(event):
+	if event.is_action("ui_accept"):
+		animation_player.play("attack_up_right")
+		
 func handle_animation():
 	if velocity.length() > 0:
 		if direction.y < 0:
